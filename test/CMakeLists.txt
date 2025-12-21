@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.10)
 
 project(dev_cpp_lab_tests)
 
-# Файлы тестов
+# Test source files
 set(TEST_SOURCES
     BaseTest.cpp
     TempFunTest.cpp
@@ -10,13 +10,13 @@ set(TEST_SOURCES
     ../source/Base.cpp
 )
 
-# Создаём исполняемый файл для тестов
+# Create the test executable
 add_executable(sample_tests ${TEST_SOURCES})
 
-# Подключаем заголовки проекта
+# Include project headers
 target_include_directories(sample_tests PRIVATE ../include)
 
-# Линкуем с Google Test
+# Link with Google Test
 target_link_libraries(sample_tests PRIVATE 
     gtest
     gtest_main
@@ -26,5 +26,5 @@ target_link_libraries(sample_tests PRIVATE
 
 target_compile_options(sample_tests PRIVATE -fprofile-arcs -ftest-coverage)
 
-# Добавляем тесты в CTest
+# Add tests to CTest
 add_test(NAME run_ctests COMMAND sample_tests)

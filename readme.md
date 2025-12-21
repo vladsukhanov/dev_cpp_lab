@@ -1,93 +1,75 @@
 # dev_cpp_lab
 
-Это простой шаблонный проект на C++.
-Проект использует **CMake** для управления сборкой.
+This is a simple C++ template project.
+The project uses **CMake** to manage the build process.
 
-## Требования
+## Requirements
 
-- **CMake** (минимальная версия 3.10)
-- **MinGW** или **MSYS2** для использования Makefiles на Windows, или любая поддерживаемая среда для компиляции C++.
+ * **CMake** (minimum version 3.10)
+ * **MinGW** or **MSYS2** to use Makefiles on Windows, or any other supported C++ compilation environment.
 
-## Сборка проекта
+## Building the Project
 
-### 1. Подготовка
+### 1. Preparation
 
-- Убедитесь, что у вас установлен **CMake** и компилятор C++.
-- Для сборки с использованием Makefiles на Windows рекомендуется установить **MinGW** или **MSYS2**.
+ * Ensure you have **CMake** and a C++ compiler installed.
+ * To build with Makefiles on Windows, it is recommended to install **MinGW** or **MSYS2**.
 
-### 2. Сборка с использованием CMake
+### 2. Building with CMake
 
-1. Перейдите в корневой каталог проекта:
+1. Navigate to the project's root directory.
 
-2. Создайте каталог для сборки:
-    * `mkdir build`
-    * `cd build`
+2. Create a build directory: `mkdir build` than `cd build`
 
-3. Запустите CMake с указанием генератора:
-    * `cmake -G "Unix Makefiles" ..`
+3. Run CMake, specifying the generator: `cmake -G "Unix Makefiles" ..`
 
-4. Соберите проект: 
-    * `make`
-    * или `cmake --build .`
+4. Build the project: `make` or `cmake --build .`
 
-5. Запустите программу: 
-    * `./sample_program.exe`
+5. Run the program: `./sample_program.exe`
 
-### 3. Очистка проекта
+### 3. Cleaning the Project
 
-Для очистки проекта и удаления сгенерированных файлов выполните следующую команду:
+To clean the project and remove generated files, execute the following command:
 
-Для удаления всех файлов:
-    * `cd build`
-    * `del /Q *.*`
+To delete all files:
+ * `cd build`
+ * `del /Q *.*`
 
-Для удаления всех подкаталогов и файлов:
-    * `cd build`
-    * `rmdir /S /Q .`
-    * или с использованием PowerShell:
-        * `Remove-Item * -recurse -force`
-        * или `ri * -recurse -force`
+To delete all subdirectories and files:
+ * `cd build`
+ * `rmdir /S /Q .`
 
-так как Remove-Item – это Alias
-    * `Get-Alias -Definition Remove-Item`
-        * Alias           del → Remove-Item
-        * Alias           erase → Remove-Item
-        * Alias           rd → Remove-Item
-        * Alias           ri → Remove-Item
-        * Alias           rm → Remove-Item
-        * Alias           rmdir → Remove-Item
+Or using PowerShell: `Remove-Item * -recurse -force`
 
 ## Doxygen
-    * создать Doxyfile
-    * добавить имя проекта PROJECT_NAME
-    * добавить выходную директорию OUTPUT_DIRECTORY
-    * disable опцию GENERATE_LATEX = NO
-    * запустить doxygen `doxygen .\Doxyfile`
+1. Create a Doxyfile
+2. Add the project name to `PROJECT_NAME`
+3. Add the output directory to `OUTPUT_DIRECTORY`
+4. Disable the `GENERATE_LATEX` option (`GENERATE_LATEX = NO`)
+5. Run doxygen: `doxygen .\Doxyfile`
 
 ## Tests & Coverage
 
-### Запуск тестов
+### Running Tests
 
-1. Перейдите в каталог сборки:
-    * `cd build`
+1. Navigate to the build directory: `cd build`
 
-2. Запустите тесты с помощью CTest:
-    * `ctest --output-on-failure`
+2. Run the tests using CTest: `ctest --output-on-failure`
 
-### Проверка покрытия кода (Coverage)
+### Checking Code Coverage
 
-1. Соберите проект с поддержкой покрытия (флаги `-fprofile-arcs -ftest-coverage` уже добавлены в CMakeLists.txt).
-2. После запуска тестов выполните команду для генерации отчёта покрытия:
+1. Build the project with coverage support (the `-fprofile-arcs -ftest-coverage` flags are already added in `CMakeLists.txt`).
 
-    * Для lcov (использовать MSYS2):
-        * `cd /c/User/.../coverage_lcov`
-        * `lcov --capture --directory . --output-file coverage.info --rc lcov_branch_coverage=1`
-        * `genhtml coverage.info --output-directory coverage_report`
+2. After running the tests, execute the command to generate a coverage report:
+ * For lcov (using MSYS2):
+   * `cd /.../coverage_lcov`
+   * `lcov --capture --directory . --output-file coverage.info --rc lcov_branch_coverage=1`
+   * `genhtml coverage.info --output-directory coverage_report`
 
-    * Для gcovr:
-        * `cd coverage_gcovr`
-        * `gcovr ../build -v -r ../source --html --html-details -o coverage.html`
+ * For gcovr:
+   * `cd coverage_gcovr`
+   * `gcovr ../build -v -r ../source --html --html-details -o coverage.html`
 
-3. Откройте файл `coverage_report/index.html` для просмотра отчёта покрытия в браузере.
+3. Open the `coverage_report/index.html` file to view the coverage report in your browser.
 
-**Примечание:** Для работы покрытия используйте компилятор GCC/MinGW. На MSVC покрытие не поддерживается.
+**Note:** To use code coverage, use the GCC/MinGW compiler. Coverage is not supported with MSVC.
