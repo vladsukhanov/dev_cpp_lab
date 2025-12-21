@@ -1,0 +1,87 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "1. CMake Configure",
+            "detail": "Generates the Makefiles in build/ directory via CMake",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "-S",
+                "${workspaceFolder}",
+                "-B",
+                "${workspaceFolder}/build",
+                "-G",
+                "Unix Makefiles"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "icon": {
+                "id": "gear",
+                "color": "terminal.ansiYellow"
+            }
+        },
+        {
+            "label": "2. CMake Build",
+            "detail": "Compiles the project using build files from build/",
+            "type": "shell",
+            "command": "cmake",
+            "args": [
+                "--build",
+                "${workspaceFolder}/build"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "icon": {
+                "id": "tools",
+                "color": "terminal.ansiGreen"
+            }
+        },
+        {
+            "label": "3. Clean Build Directory",
+            "detail": "Removes all files from the build/ directory",
+            "type": "shell",
+            "command": "powershell",
+            "args": [
+                "Remove-Item -Path '${workspaceFolder}/build/*' -Recurse -Force"
+            ],
+            "icon": {
+                "id": "trash",
+                "color": "terminal.ansiRed"
+            }
+        },
+        {
+            "label": "4. Run Executable",
+            "detail": "Runs the compiled sample_program.exe",
+            "type": "shell",
+            "command": "${workspaceFolder}/build/sample_program.exe",
+            "problemMatcher": [],
+            "icon": {
+                "id": "play",
+                "color": "terminal.ansiBlue"
+            }
+        },
+        {
+            "label": "5. Run Tests",
+            "detail": "Runs the compiled sample_tests.exe",
+            "type": "shell",
+            "command": "${workspaceFolder}/build/test/sample_tests.exe",
+            "args": [
+                "--gtest_color=1"
+            ],
+            "problemMatcher": [],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "icon": {
+                "id": "beaker",
+                "color": "terminal.ansiMagenta"
+            }
+        }
+    ]
+}
