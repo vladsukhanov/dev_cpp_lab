@@ -2,10 +2,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug C++",
+            "name": "Debug Exe",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/build/template.exe",
+            "program": "${workspaceFolder}/build/sample_program.exe",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
@@ -19,7 +19,27 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "build"
+            "preLaunchTask": "2. CMake Build"
+        },
+        {
+            "name": "Debug Tests",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/test/sample_tests.exe",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "2. CMake Build"
         }
     ]
 }
